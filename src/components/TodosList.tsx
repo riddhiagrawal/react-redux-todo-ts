@@ -1,26 +1,26 @@
 import * as React from 'react'
 import Todo from '../models/Todo'
+import { connect } from 'react-redux'
+import { getTodos } from '../selectors/todos'
+import { State } from '../reducers'
 
 interface Props {
-  todos: Todo[],
-  onTodoClicked: (todoId: number) => void
+  todos: Todo[]
 }
-interface State { }
-
-export default class AddTodoForm extends React.Component<Props, State> {
+class TodosList extends React.Component<Props> {
   constructor(props: Props) {
     super(props)
   }
 
   render() {
-    const { todos, onTodoClicked } = this.props
+    const { todos } = this.props
     return (
       <ul>
         {
           todos.map(todo => (
-            <li key={todo.id}
-              onClick={() => onTodoClicked(todo.id)}
-              style={{ textDecoration: `${todo.done ? 'line-through' : ''}`, cursor: 'pointer' }}>
+            <li
+              key={todo.id}
+            >
               {todo.name}
             </li>)
           )
@@ -29,3 +29,9 @@ export default class AddTodoForm extends React.Component<Props, State> {
     )
   }
 }
+
+const mapStateToProps = (state: State) => ({
+  todos: getTodos(state)
+})
+
+export default connect<any, any, any>(mapStateToProps)(TodosList)

@@ -1,14 +1,16 @@
 import * as React from 'react'
-import AddTodo from '../containers/AddTodo'
-import Todos from '../containers/Todos'
+import AddTodoForm from './AddTodoForm'
+import TodosList from './TodosList'
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Todos</h1>
-        <AddTodo />
-        <Todos />
+      <div className="todoapp">
+        <header>
+          <h1>Todos</h1>
+          <AddTodoForm />
+        </header>
+        <TodosList />
       </div>
     );
   }
