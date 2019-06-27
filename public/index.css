@@ -2,3 +2,11 @@
     margin: 0 auto;
     width: 20%;
 }
+
+.li {
+    cursor: 'pointer';
+}
+
+li.completed {
+    text-decoration: line-through;
+}
