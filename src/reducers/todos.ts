@@ -20,6 +20,15 @@ export function reducer(state: State = initialState, action: Action) {
       }
     }
 
+    case ActionTypes.COMPLETE_TODO: {
+      const todoId = action.payload.id
+
+      return {
+        ...state,
+        todos: state.todos.map(todo => todo.id === todoId ? { ...todo, done: true } : todo)
+      }
+    }
+
     default:
       return state
   }
